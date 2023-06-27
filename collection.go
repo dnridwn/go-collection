@@ -84,6 +84,15 @@ func (c *Collection) Last() Entity {
 	return c.data[len(c.data)-1]
 }
 
+func (c *Collection) Reverse() *Collection {
+	nData := make([]Entity, 0)
+	for i := len(c.data) - 1; i >= 0; i-- {
+		nData = append(nData, c.data[i])
+	}
+	c.data = nData
+	return c
+}
+
 func New(nData ...Entity) *Collection {
 	if len(nData) == 0 {
 		nData = []Entity{}

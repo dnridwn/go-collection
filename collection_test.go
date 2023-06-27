@@ -278,3 +278,33 @@ func TestLast(t *testing.T) {
 		})
 	}
 }
+
+func TestReverse(t *testing.T) {
+	testCases := []struct {
+		name     string
+		c        *Collection
+		expected []Entity
+	}{
+		{
+			name:     "Test has one entity",
+			c:        New(1),
+			expected: []Entity{1},
+		},
+		{
+			name:     "Test has more than one entities",
+			c:        New(1, 2, 4, 3, "Test"),
+			expected: []Entity{"Test", 3, 4, 2, 1},
+		},
+		{
+			name:     "Test emppty",
+			c:        New(),
+			expected: []Entity{},
+		},
+	}
+
+	for _, tt := range testCases {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.expected, tt.c.Reverse().Get())
+		})
+	}
+}
