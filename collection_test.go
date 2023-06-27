@@ -11,7 +11,7 @@ func TestFindKey(t *testing.T) {
 	cl := New("Test", 1, 2, 3, true)
 	testCases := []struct {
 		name     string
-		c        Collection
+		c        *Collection
 		t        Entity
 		expected int
 	}{
@@ -40,7 +40,7 @@ func TestFindKeys(t *testing.T) {
 	cl := New("Test", 1, 2, 3, "Test", true, 0.00, -88)
 	testCases := []struct {
 		name     string
-		c        Collection
+		c        *Collection
 		t        Entity
 		expected []int
 	}{
@@ -70,7 +70,7 @@ func TestFind(t *testing.T) {
 
 	testCases := []struct {
 		name     string
-		c        Collection
+		c        *Collection
 		k        int
 		expected Entity
 	}{
@@ -98,7 +98,7 @@ func TestFind(t *testing.T) {
 func TestGet(t *testing.T) {
 	testCases := []struct {
 		name     string
-		c        Collection
+		c        *Collection
 		k        int
 		expected []Entity
 	}{
@@ -126,7 +126,7 @@ func TestGet(t *testing.T) {
 func TestUnique(t *testing.T) {
 	testCases := []struct {
 		name     string
-		c        Collection
+		c        *Collection
 		expected []Entity
 	}{
 		{
@@ -157,7 +157,7 @@ func TestUnique(t *testing.T) {
 func TestMap(t *testing.T) {
 	testCases := []struct {
 		name        string
-		c           Collection
+		c           *Collection
 		mapCallback MapCallback
 		expected    []Entity
 	}{
@@ -200,7 +200,7 @@ func TestMap(t *testing.T) {
 func TestFilter(t *testing.T) {
 	testCases := []struct {
 		name           string
-		c              Collection
+		c              *Collection
 		filterCallback FilterCallback
 		expected       []Entity
 	}{
@@ -225,6 +225,56 @@ func TestFilter(t *testing.T) {
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			assert.Equal(t, tt.expected, tt.c.Filter(tt.filterCallback).Get())
+		})
+	}
+}
+
+func TestFirst(t *testing.T) {
+	testCases := []struct {
+		name     string
+		c        *Collection
+		expected Entity
+	}{
+		{
+			name:     "Test exists",
+			c:        New(1, 2, "test", 3, 4),
+			expected: 1,
+		},
+		{
+			name:     "Test not exists",
+			c:        New(),
+			expected: nil,
+		},
+	}
+
+	for _, tt := range testCases {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.expected, tt.c.First())
+		})
+	}
+}
+
+func TestLast(t *testing.T) {
+	testCases := []struct {
+		name     string
+		c        *Collection
+		expected Entity
+	}{
+		{
+			name:     "Test exists",
+			c:        New(1, 2, "test", 3, 4),
+			expected: 4,
+		},
+		{
+			name:     "Test not exists",
+			c:        New(),
+			expected: nil,
+		},
+	}
+
+	for _, tt := range testCases {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.expected, tt.c.Last())
 		})
 	}
 }

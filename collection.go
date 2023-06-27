@@ -70,11 +70,25 @@ func (c *Collection) Filter(callback FilterCallback) *Collection {
 	return c
 }
 
-func New(nData ...Entity) Collection {
+func (c *Collection) First() Entity {
+	if len(c.data) == 0 {
+		return nil
+	}
+	return c.data[0]
+}
+
+func (c *Collection) Last() Entity {
+	if len(c.data) == 0 {
+		return nil
+	}
+	return c.data[len(c.data)-1]
+}
+
+func New(nData ...Entity) *Collection {
 	if len(nData) == 0 {
 		nData = []Entity{}
 	}
-	return Collection{
+	return &Collection{
 		data: nData,
 	}
 }
