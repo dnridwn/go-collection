@@ -9,7 +9,7 @@ type Collection struct {
 }
 
 func (c *Collection) Find(k int) Entity {
-	if k < 0 || k >= len(c.data) {
+	if k < 0 || k >= c.Len() {
 		return nil
 	}
 	return c.data[k]
@@ -71,22 +71,22 @@ func (c *Collection) Filter(callback FilterCallback) *Collection {
 }
 
 func (c *Collection) First() Entity {
-	if len(c.data) == 0 {
+	if c.Len() == 0 {
 		return nil
 	}
 	return c.data[0]
 }
 
 func (c *Collection) Last() Entity {
-	if len(c.data) == 0 {
+	if c.Len() == 0 {
 		return nil
 	}
-	return c.data[len(c.data)-1]
+	return c.data[c.Len()-1]
 }
 
 func (c *Collection) Reverse() *Collection {
 	nData := make([]Entity, 0)
-	for i := len(c.data) - 1; i >= 0; i-- {
+	for i := c.Len() - 1; i >= 0; i-- {
 		nData = append(nData, c.data[i])
 	}
 	c.data = nData
