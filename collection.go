@@ -93,6 +93,10 @@ func (c *Collection) Reverse() *Collection {
 	return c
 }
 
+func (c *Collection) Len() int {
+	return len(c.data)
+}
+
 func New(nData ...Entity) *Collection {
 	if len(nData) == 0 {
 		nData = []Entity{}

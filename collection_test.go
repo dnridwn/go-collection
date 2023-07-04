@@ -308,3 +308,28 @@ func TestReverse(t *testing.T) {
 		})
 	}
 }
+
+func TestLen(t *testing.T) {
+	testCases := []struct {
+		name     string
+		c        *Collection
+		expected int
+	}{
+		{
+			name:     "Test has data",
+			c:        New(1, "Test"),
+			expected: 2,
+		},
+		{
+			name:     "Test empty",
+			c:        New(),
+			expected: 0,
+		},
+	}
+
+	for _, tt := range testCases {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.expected, tt.c.Len())
+		})
+	}
+}
