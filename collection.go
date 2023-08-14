@@ -8,6 +8,15 @@ type Collection struct {
 	data []Entity
 }
 
+func New(nData ...Entity) *Collection {
+	if len(nData) == 0 {
+		nData = []Entity{}
+	}
+	return &Collection{
+		data: nData,
+	}
+}
+
 func (c *Collection) Find(k int) Entity {
 	if k < 0 || k >= c.Len() {
 		return nil
@@ -95,13 +104,4 @@ func (c *Collection) Reverse() *Collection {
 
 func (c *Collection) Len() int {
 	return len(c.data)
-}
-
-func New(nData ...Entity) *Collection {
-	if len(nData) == 0 {
-		nData = []Entity{}
-	}
-	return &Collection{
-		data: nData,
-	}
 }
