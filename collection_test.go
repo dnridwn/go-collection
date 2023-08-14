@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestFindKey(t *testing.T) {
+func TestCollection_FindKey(t *testing.T) {
 	cl := New("Test", 1, 2, 3, true)
 	testCases := []struct {
 		name     string
@@ -36,7 +36,7 @@ func TestFindKey(t *testing.T) {
 	}
 }
 
-func TestFindKeys(t *testing.T) {
+func TestCollection_FindKeys(t *testing.T) {
 	cl := New("Test", 1, 2, 3, "Test", true, 0.00, -88)
 	testCases := []struct {
 		name     string
@@ -65,7 +65,7 @@ func TestFindKeys(t *testing.T) {
 	}
 }
 
-func TestFind(t *testing.T) {
+func TestCollection_Find(t *testing.T) {
 	cl := New(1, 2, 4, "test", true, "test 2")
 
 	testCases := []struct {
@@ -95,7 +95,7 @@ func TestFind(t *testing.T) {
 	}
 }
 
-func TestGet(t *testing.T) {
+func TestCollection_Get(t *testing.T) {
 	testCases := []struct {
 		name     string
 		c        *Collection
@@ -123,7 +123,7 @@ func TestGet(t *testing.T) {
 	}
 }
 
-func TestUnique(t *testing.T) {
+func TestCollection_Unique(t *testing.T) {
 	testCases := []struct {
 		name     string
 		c        *Collection
@@ -154,7 +154,7 @@ func TestUnique(t *testing.T) {
 	}
 }
 
-func TestMap(t *testing.T) {
+func TestCollection_Map(t *testing.T) {
 	testCases := []struct {
 		name        string
 		c           *Collection
@@ -197,7 +197,7 @@ func TestMap(t *testing.T) {
 	}
 }
 
-func TestFilter(t *testing.T) {
+func TestCollection_Filter(t *testing.T) {
 	testCases := []struct {
 		name           string
 		c              *Collection
@@ -229,7 +229,7 @@ func TestFilter(t *testing.T) {
 	}
 }
 
-func TestFirst(t *testing.T) {
+func TestCollection_First(t *testing.T) {
 	testCases := []struct {
 		name     string
 		c        *Collection
@@ -254,7 +254,7 @@ func TestFirst(t *testing.T) {
 	}
 }
 
-func TestLast(t *testing.T) {
+func TestCollection_Last(t *testing.T) {
 	testCases := []struct {
 		name     string
 		c        *Collection
@@ -279,7 +279,7 @@ func TestLast(t *testing.T) {
 	}
 }
 
-func TestReverse(t *testing.T) {
+func TestCollection_Reverse(t *testing.T) {
 	testCases := []struct {
 		name     string
 		c        *Collection
@@ -309,7 +309,7 @@ func TestReverse(t *testing.T) {
 	}
 }
 
-func TestLen(t *testing.T) {
+func TestCollection_Len(t *testing.T) {
 	testCases := []struct {
 		name     string
 		c        *Collection
